@@ -137,16 +137,16 @@ bar
 #######################################################
 
 # Audio configuration
-bindsym XF86AudioPlay exec clementine --play-pause
-bindsym XF86AudioStop exec clementine --stop
-bindsym XF86AudioPrev exec clementine --previous
-bindsym XF86AudioNext exec clementine --next
-bindsym XF86AudioRaiseVolume         	exec amixer -c 0 sset 'Master' 1+
-bindsym XF86AudioLowerVolume         	exec amixer -c 0 sset 'Master' 1- 
-bindsym XF86AudioMute 			exec amixer sset 'Master' toggle # toggles mute
+bindsym XF86AudioPlay exec
+bindsym XF86AudioStop exec
+bindsym XF86AudioPrev exec
+bindsym XF86AudioNext exec
+bindsym XF86AudioRaiseVolume    exec amixer -c 0 sset 'Master' 1+
+bindsym XF86AudioLowerVolume    exec amixer -c 0 sset 'Master' 1- 
+bindsym XF86AudioMute 		    exec amixer sset 'Master' toggle
 
 # Lockscreen
-bindsym Mod1+l exec i3lock -i ownCloud/Config/i3wm/dark.png -c 000000
+bindsym Mod1+l exec i3lock -c 000000 -u
 
 # Keyboard layout
 bindsym Mod1+m exec setxkbmap us
@@ -156,9 +156,8 @@ bindsym Mod1+n exec setxkbmap ca
 #	Style
 #######################################################
 
-# Dual monitor setup
-exec_always --no-startup-id xrandr --output DVI-0 --auto --left-of VGA-0
-
+# Monitors
+exec_always --no-startup-id xrandr --output DVI-0 left-of VGA-0
 workspace 1 output DVI-0
 workspace 2 output VGA-0
 
@@ -167,7 +166,7 @@ exec --no-startup-id nitrogen --restore
 
 ####--------- Colours
 #colourclass                border     bckgrnd    text
-client.focused              #1793D0    #1793D0    #FFFFFF
+client.focused              #1793D0    #333333    #FFFFFF
 client.focused_inactive     #333333    #333333    #999999
 client.unfocused            #333333    #333333    #999999
 client.urgent               #FF0000    #8C5665    #FF0000
@@ -176,16 +175,12 @@ client.urgent               #FF0000    #8C5665    #FF0000
 #	Software
 #######################################################
 
-# start a terminal
+# shortcuts
 bindsym Mod4+Return exec i3-sensible-terminal
+bindsym Mod4+p exec terminator -x ranger
 
-# autostart
-exec ~/.dropbox-dist/dropboxd
-exec --no-startup-id owncloud
-
-# software shortcuts
-bindsym Mod4+p exec thunar
-
-# Gnome panel
-bindsym Mod1+g exec gnome-panel
-bindsym Mod1+y exec killall gnome-panel
+# autostarts
+#exec --no-startup-id conky
+#exec --no-startup-id owncloud
+exec --no-startup-id dropboxd
+exec --no-startup-id btsync --config /home/j4v/.config/btsync/btsync.conf 
