@@ -8,6 +8,7 @@ own_window no
 own_window_transparent yes
 own_window_type desktop
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window override
 double_buffer yes
 minimum_size 200 200
 maximum_width 200
